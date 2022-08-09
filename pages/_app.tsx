@@ -8,6 +8,7 @@ import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../lib/mui/createEmotionCache";
 import theme from "../lib/mui/theme";
 import "tailwindcss/tailwind.css";
+import UserProvider from "../lib/user/UserProvider";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -24,9 +25,11 @@ export default function MyApp(props: MyAppProps) {
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
 			</Head>
 			<ThemeProvider theme={theme}>
-				{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-				<CssBaseline />
-				<Component {...pageProps} />
+				<UserProvider>
+					{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+					<CssBaseline />
+					<Component {...pageProps} />
+				</UserProvider>
 			</ThemeProvider>
 		</CacheProvider>
 	);
