@@ -1,7 +1,14 @@
 {
-  "cSpell.words": [
-    "doginhos",
-    "pnpm",
-    "webp"
-  ]
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.foldingImportsByDefault": true,
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": [
+		"source.addMissingImports",
+		"source.fixAll",
+		"source.organizeImports"
+	],
+	"cSpell.words": ["doginhos", "pnpm", "webp"]
 }

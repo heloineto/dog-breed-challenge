@@ -8,7 +8,7 @@ import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../lib/mui/createEmotionCache";
 import theme from "../lib/mui/theme";
 import "tailwindcss/tailwind.css";
-import UserProvider from "../lib/user/UserProvider";
+import UserProvider from "../lib/contexts/auth/AuthProvider";
 
 const clientSideEmotionCache = createEmotionCache();
 

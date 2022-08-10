@@ -1,35 +1,19 @@
+import type { FormEvent } from "react";
 import { useState } from "react";
-import API_URL from "../../../lib/constants";
-import useUserContext from "../../../lib/user/useUserContext";
+import useAuth from "../../../lib/contexts/auth/useUserContext";
 
 const RegisterForm = () => {
 	const [email, setEmail] = useState("");
-	const { setUser } = useUserContext();
 
-	const onSubmit = async () => {
-		const response = await fetch(`${API_URL}/register`, {
-			method: "POST",
-			body: JSON.stringify({ email }),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+	const { register } = useAuth();
 
-		const user = (await response.json()) as User;
-
-		setUser(user);
+	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		void register(email);
 	};
 
 	return (
-		<form
-			action="#"
-			method="POST"
-			className="space-y-6 mt-8"
-			onSubmit={(e) => {
-				e.preventDefault();
-				void onSubmit();
-			}}
-		>
+		<form action="#" method="POST" className="space-y-6 mt-8" onSubmit={onSubmit}>
 			<div>
 				<label htmlFor="email" className="block text-sm font-medium text-gray-700">
 					Email address
@@ -40,7 +24,7 @@ const RegisterForm = () => {
 					type="email"
 					autoComplete="email"
 					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					onChange={(event) => setEmail(event.target.value)}
 					required
 					className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
 				/>

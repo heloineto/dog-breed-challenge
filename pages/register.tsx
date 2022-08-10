@@ -1,16 +1,10 @@
+import type { GetServerSideProps } from "next";
 import Image from "next/image";
 import { PawPrint } from "phosphor-react";
-import AlreadyAuthenticated from "../components/register/AlreadyAuthenticated";
 import RegisterForm from "../components/register/RegisterForm";
-import useUserContext from "../lib/user/useUserContext";
+import { getAuthToken } from "../lib/services/api";
 
 function Register() {
-	const { user } = useUserContext();
-
-	if (user) {
-		return <AlreadyAuthenticated />;
-	}
-
 	return (
 		<div className="h-screen flex">
 			<main className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -39,5 +33,23 @@ function Register() {
 		</div>
 	);
 }
+
+// eslint-disable-next-line @typescript-eslint/require-await -- Next.js expects this to be always be async.
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const token = getAuthToken(context);
+
+	if (token) {
+		return {
+			redirect: {
+				destination: "/list",
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: {},
+	};
+};
 
 export default Register;
