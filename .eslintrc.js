@@ -38,5 +38,7 @@ module.exports = {
 				patterns: ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"],
 			},
 		],
+		"@typescript-eslint/no-misused-promises": "off",
+		"@typescript-eslint/require-await": "off",
 	},
 };

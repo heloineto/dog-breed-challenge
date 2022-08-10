@@ -3,7 +3,8 @@ import { createContext } from "react";
 const AuthContext = createContext<
 	| {
 			authToken: string | null;
-			register: (email: string) => Promise<void>;
+			signIn: (email: string) => Promise<void>;
+			signOut: () => Promise<void>;
 			isAuthenticated: boolean;
 	  }
 	| undefined

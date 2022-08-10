@@ -11,7 +11,7 @@ function Register() {
 				<div className="mx-auto w-full max-w-sm lg:w-96 mb-20">
 					<header>
 						<PawPrint className="h-14 w-auto text-teal-500" weight="duotone" />
-						<h1 className="mt-6 text-3xl font-extrabold text-gray-900">Registre-se com um email</h1>
+						<h1 className="mt-6 text-3xl font-extrabold text-gray-900">Registre-se pelo email</h1>
 						<p className="mt-2 text-sm text-gray-600">
 							Para ver fotos de doginhos de várias raças!
 						</p>
@@ -27,6 +27,7 @@ function Register() {
 						objectFit="cover"
 						src="/pug.webp"
 						alt="cute pug dog on a green background wearing green clothes"
+						priority
 					/>
 				</div>
 			</div>
@@ -34,7 +35,6 @@ function Register() {
 	);
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await -- Next.js expects this to be always be async.
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const token = getAuthToken(context);
 

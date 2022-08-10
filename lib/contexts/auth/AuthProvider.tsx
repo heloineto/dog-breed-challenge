@@ -1,5 +1,5 @@
 import Router from "next/router";
-import { setCookie } from "nookies";
+import { destroyCookie, setCookie } from "nookies";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import api, { AUTH_TOKEN_NAME } from "../../services/api";
@@ -13,15 +13,14 @@ const AuthProvider = (props: Props) => {
 	const [authToken, setAuthToken] = useState<string | null>(null);
 	const isAuthenticated = !!authToken;
 
-	const register = async (email: string) => {
-		console.log("register");
+	const signIn = async (email: string) => {
+		const response = await api.post<RegisterResponse>(
+			"/register",
+			{ email },
+			{ headers: { "Content-Type": "application/json" } }
+		);
 
-		const {
-			data: { token },
-		} = await api.post<User>("/register", {
-			body: JSON.stringify({ email }),
-			headers: { "Content-Type": "application/json" },
-		});
+		const { token } = response.data.user;
 
 		setCookie(undefined, AUTH_TOKEN_NAME, token, {
 			maxAge: 60 * 60 * 1,
@@ -29,10 +28,24 @@ const AuthProvider = (props: Props) => {
 
 		setAuthToken(token);
 
-		void Router.push("/list");
+		api.defaults.headers.common.Authorization = token;
+
+		await Router.push("/list");
 	};
 
-	return <UserContext.Provider value={{ authToken, isAuthenticated, register }} {...props} />;
+	const signOut = async () => {
+		destroyCookie(undefined, AUTH_TOKEN_NAME);
+
+		setAuthToken(null);
+
+		delete api.defaults.headers.common.Authorization;
+
+		await Router.push("/register");
+	};
+
+	return (
+		<UserContext.Provider value={{ authToken, isAuthenticated, signIn, signOut }} {...props} />
+	);
 };
 
 export default AuthProvider;

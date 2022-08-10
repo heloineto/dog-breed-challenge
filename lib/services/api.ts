@@ -14,7 +14,7 @@ export const getApi = (context?: Context) => {
 	});
 
 	if (authToken) {
-		api.defaults.headers.common.Authorization = `Bearer ${authToken}`;
+		api.defaults.headers.common.Authorization = authToken;
 	}
 
 	return api;
