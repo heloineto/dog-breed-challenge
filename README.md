@@ -2,7 +2,7 @@
 
 ## Preview
 
-![Registration preview](https://media2.giphy.com/media/1L4pYHxkxO7HJSOfGZ/giphy.gif?cid=790b761163a441435dce7fba398d43e863f2d99c218fe8e6&rid=giphy.gif&ct=g)
+<img src="https://media2.giphy.com/media/1L4pYHxkxO7HJSOfGZ/giphy.gif" width="100%" alt="Registration preview" />
 
 ## Objetivos desse desafio
 
