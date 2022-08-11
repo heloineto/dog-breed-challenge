@@ -23,7 +23,7 @@ const AuthProvider = (props: Props) => {
 		const { token } = response.data.user;
 
 		setCookie(undefined, AUTH_TOKEN_NAME, token, {
-			maxAge: 60 * 60 * 1,
+			maxAge: 60 * 60 * 3,
 		});
 
 		setAuthToken(token);

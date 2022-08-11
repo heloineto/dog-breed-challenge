@@ -10,6 +10,7 @@ interface Props {
 const ImageGrid = ({ list }: Props) => {
 	const [imageLimit, setImageLimit] = useState(10);
 	const [selectedImage, setSelectedImage] = useState<string | null>(null);
+	const [openDialog, setOpenDialog] = useState<boolean>(false);
 
 	const images = list.slice(0, imageLimit);
 	const reachedLimit = imageLimit >= list.length;
@@ -20,7 +21,10 @@ const ImageGrid = ({ list }: Props) => {
 				<div className="grid grid-cols-1 gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3">
 					<ImageColumns
 						images={images}
-						onSelectImage={(image: string) => setSelectedImage(image)}
+						onSelectImage={(image: string) => {
+							setSelectedImage(image);
+							setOpenDialog(true);
+						}}
 					/>
 				</div>
 				{!reachedLimit ? (
@@ -34,18 +38,18 @@ const ImageGrid = ({ list }: Props) => {
 					</div>
 				) : null}
 			</div>
-			<Dialog onClose={() => setSelectedImage(null)} open={selectedImage !== null} maxWidth="md">
+			<Dialog onClose={() => setOpenDialog(false)} open={openDialog} maxWidth="md">
 				<div className="h-10 bg-slate-300 flex justify-end px-5 items-center">
 					<IconButton
 						className="h-7 w-7 p-0 border-solid rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#cbd5e1] focus:ring-slate-500"
-						onClick={() => setSelectedImage(null)}
+						onClick={() => setOpenDialog(false)}
 					>
 						<span className="sr-only">Close modal</span>
 						<X className="h-5 w-5 text-slate-600" weight="bold" />
 					</IconButton>
 				</div>
 				<div className="p-5">
-					<img className="rounded-md" src={selectedImage} alt="" />
+					{selectedImage ? <img className="rounded-md" src={selectedImage} alt="" /> : null}
 				</div>
 			</Dialog>
 		</>
