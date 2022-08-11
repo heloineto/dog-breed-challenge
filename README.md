@@ -16,7 +16,7 @@
 
 ### Página de Foto
 
-<img src="https://media4.giphy.com/media/ZsAqYZaMumzp9hBmVr/giphy.gif" width="100%" alt="photo page" />
+<img src="https://media2.giphy.com/media/bpsbh9GQZMaGaf1xJB/giphy.gif" width="100%" alt="photo page" />
 
 ## Objetivos desse desafio
 
