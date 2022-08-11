@@ -8,6 +8,7 @@
 
 ### Página de Lista de Cachorros
 
+![DOG](https://media3.giphy.com/media/PJTOVF6II6XqUZg5oa/giphy.gif)
 <img src="https://media3.giphy.com/media/PJTOVF6II6XqUZg5oa/giphy.gif" width="100%" alt="Dog List Page" />
 
 ## Objetivos desse desafio
