@@ -2,7 +2,13 @@
 
 ## Preview
 
+### Página de Cadastro
+
 <img src="https://media2.giphy.com/media/1L4pYHxkxO7HJSOfGZ/giphy.gif" width="100%" alt="Registration preview" />
+
+### Página de Lista de Cachorros
+
+<img src="https://media3.giphy.com/media/PJTOVF6II6XqUZg5oa/giphy.gif" width="100%" alt="Dog List Page" />
 
 ## Objetivos desse desafio
 

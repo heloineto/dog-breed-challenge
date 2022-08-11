@@ -13,7 +13,7 @@ function Register() {
 						<PawPrint className="h-14 w-auto text-teal-500" weight="duotone" />
 						<h1 className="mt-6 text-3xl font-extrabold text-gray-900">Registre-se pelo email</h1>
 						<p className="mt-2 text-sm text-gray-600">
-							Para ver fotos de doginhos de várias raças!
+							Para ver fotos de doguinhos de várias raças!
 						</p>
 					</header>
 
