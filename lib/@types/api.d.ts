@@ -8,3 +8,10 @@ interface RegisterResponse {
 		__v: number;
 	};
 }
+
+interface ListResponse {
+	breed: Breed;
+	list: string[];
+}
+
+type Breed = "chihuahua" | "husky" | "labrador" | "pug";

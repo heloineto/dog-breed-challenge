@@ -1,19 +1,14 @@
 import { IconButton } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { PawPrint, SignOut } from "phosphor-react";
+import breeds from "../../../lib/constants/breeds";
 import useAuth from "../../../lib/contexts/auth/useUserContext";
 import classNames from "../../../lib/utils/classNames";
 
-const navigation = [
-	{ name: "Chihuahua", href: "#", current: true },
-	{ name: "Husky", href: "#", current: false },
-	{ name: "Pug", href: "#", current: false },
-	{ name: "Labrador", href: "#", current: false },
-];
-
-interface Props {}
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
 	const { signOut } = useAuth();
+	const { query } = useRouter();
 
 	return (
 		<nav className="bg-white border-b border-gray-200">
@@ -23,21 +18,25 @@ const Navbar = (props: Props) => {
 						<PawPrint className="h-10 w-10 text-teal-500" weight="duotone" />
 					</div>
 					<div className="-my-px ml-6 flex space-x-8">
-						{navigation.map((item) => (
-							<a
-								key={item.name}
-								href={item.href}
-								className={classNames(
-									item.current
-										? "border-teal-500 text-gray-900"
-										: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
-									"inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-								)}
-								aria-current={item.current ? "page" : undefined}
-							>
-								{item.name}
-							</a>
-						))}
+						{Object.entries(breeds).map(([breed, { label }]) => {
+							const current = query.breed === breed;
+
+							return (
+								<Link href={{ pathname: "/list", query: { breed: breed } }} key={breed} passHref>
+									<a
+										className={classNames(
+											current
+												? "border-teal-500 text-gray-900"
+												: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+											"inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+										)}
+										aria-current={current ? "page" : undefined}
+									>
+										{label}
+									</a>
+								</Link>
+							);
+						})}
 					</div>
 				</div>
 				<div className="ml-9 flex items-center">

@@ -30,7 +30,10 @@ const AuthProvider = (props: Props) => {
 
 		api.defaults.headers.common.Authorization = token;
 
-		await Router.push("/list");
+		await Router.push({
+			pathname: "/list",
+			query: { breed: "chihuahua" },
+		});
 	};
 
 	const signOut = async () => {
