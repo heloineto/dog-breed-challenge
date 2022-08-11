@@ -11,7 +11,7 @@ const Navbar = () => {
 	const { query } = useRouter();
 
 	return (
-		<nav className="bg-white border-b border-gray-200">
+		<nav className="bg-white border-b border-gray-200 fixed w-full z-50">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16">
 				<div className="flex">
 					<div className="flex-shrink-0 flex items-center">
@@ -41,7 +41,7 @@ const Navbar = () => {
 				</div>
 				<div className="ml-9 flex items-center">
 					<IconButton
-						className="h-10 w-10 border-solid bg-orange-200 hover:bg-orange-300 border-2 border-orange-500 flex items-center justify-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+						className="h-10 w-10 border-solid bg-orange-200 hover:bg-orange-300 border-2 border-orange-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
 						onClick={signOut}
 					>
 						<span className="sr-only">Sign out</span>

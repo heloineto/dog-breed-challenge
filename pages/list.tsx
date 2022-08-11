@@ -1,15 +1,25 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import ImageGrid from "../components/list/ImageGrid";
 import Navbar from "../components/list/Navbar";
 import breeds from "../lib/constants/breeds";
 import { getApi, getAuthToken } from "../lib/services/api";
 
 const List = ({ list, breed }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+	const router = useRouter();
+
+	useEffect(() => {
+		if (!router.query.breed) {
+			void router.push("/list?breed=chihuahua", undefined, { shallow: true });
+		}
+	}, [router]);
+
 	return (
-		<div className="min-h-full">
+		<div className="min-h-full relative">
 			<Navbar />
 			<div className="py-10">
-				<header>
+				<header className="mt-16">
 					<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 						<h1 className="text-3xl font-bold leading-tight text-gray-900">
 							{breeds[breed].label}
@@ -17,10 +27,8 @@ const List = ({ list, breed }: InferGetServerSidePropsType<typeof getServerSideP
 						<p>{list.length} imagens</p>
 					</div>
 				</header>
-				<main>
-					<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-						<ImageGrid list={list} />
-					</div>
+				<main className="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-5">
+					<ImageGrid list={list} />
 				</main>
 			</div>
 		</div>

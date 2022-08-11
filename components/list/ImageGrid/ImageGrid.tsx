@@ -1,3 +1,6 @@
+import { Button, Dialog, IconButton } from "@mui/material";
+import { X } from "phosphor-react";
+import { useState } from "react";
 import ImageColumns from "./ImageColumns";
 
 interface Props {
@@ -5,25 +8,47 @@ interface Props {
 }
 
 const ImageGrid = ({ list }: Props) => {
-	const images = list.splice(0, 10);
+	const [imageLimit, setImageLimit] = useState(10);
+	const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+	const images = list.slice(0, imageLimit);
+	const reachedLimit = imageLimit >= list.length;
 
 	return (
-		<div
-			tabIndex={-1}
-			className="relative max-w-7xl mx-auto px-4 focus:outline-none sm:px-3 md:px-5"
-		>
-			<div className="grid grid-cols-1 gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 max-h-[33rem] overflow-hidden">
-				<ImageColumns images={images} />
+		<>
+			<div tabIndex={-1} className="relative w-full">
+				<div className="grid grid-cols-1 gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+					<ImageColumns
+						images={images}
+						onSelectImage={(image: string) => setSelectedImage(image)}
+					/>
+				</div>
+				{!reachedLimit ? (
+					<div className="inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-white pt-32 pb-8 absolute -mx-5 -mb-5">
+						<Button
+							className="w-60 bg-teal-900 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 text-sm text-white font-semibold h-12"
+							onClick={() => setImageLimit((current) => current + 10)}
+						>
+							Mostrar mais
+						</Button>
+					</div>
+				) : null}
 			</div>
-			<div className="inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-white pt-32 pb-8 pointer-events-none absolute">
-				<button
-					type="button"
-					className="relative bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-sm text-white font-semibold h-12 px-6 rounded-lg flex items-center dark:bg-slate-700 dark:hover:bg-slate-600 pointer-events-auto"
-				>
-					Show more...
-				</button>
-			</div>
-		</div>
+			<Dialog onClose={() => setSelectedImage(null)} open={selectedImage !== null} maxWidth="md">
+				<div className="h-10 bg-slate-300 flex justify-end px-5 items-center">
+					<IconButton
+						className="h-7 w-7 p-0 border-solid rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#cbd5e1] focus:ring-slate-500"
+						onClick={() => setSelectedImage(null)}
+					>
+						<span className="sr-only">Close modal</span>
+						<X className="h-5 w-5 text-slate-600" weight="bold" />
+					</IconButton>
+				</div>
+				<div className="p-5">
+					<img className="rounded-md" src={selectedImage} alt="" />
+				</div>
+			</Dialog>
+		</>
 	);
 };
 

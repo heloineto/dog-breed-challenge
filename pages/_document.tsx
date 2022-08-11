@@ -1,4 +1,4 @@
-import createEmotionServer from "@emotion/server/create-instance";
+import createEmotionServer from "@emotion/server/types/create-instance";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import createEmotionCache from "../lib/mui/createEmotionCache";
 import theme from "../lib/mui/theme";
@@ -11,6 +11,12 @@ export default class MyDocument extends Document {
 					{/* PWA primary color */}
 					<meta name="theme-color" content={theme.palette.primary.main} />
 					<meta name="emotion-insertion-point" content="" />
+					<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+					<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+					<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+					<link rel="manifest" href="/site.webmanifest" />
+					<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+					<meta name="msapplication-TileColor" content="#da532c" />
 					<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 					{(this.props as any).emotionStyleTags}
 				</Head>
