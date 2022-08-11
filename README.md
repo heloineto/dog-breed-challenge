@@ -4,12 +4,19 @@
 
 ### Página de Cadastro
 
-<img src="https://media2.giphy.com/media/1L4pYHxkxO7HJSOfGZ/giphy.gif" width="100%" alt="Registration preview" />
+<img src="https://media2.giphy.com/media/1L4pYHxkxO7HJSOfGZ/giphy.gif" width="100%" alt="registration page" />
 
-### Página de Lista de Cachorros
+### Página de Lista de Cachorros - Rotas
 
-![DOG](https://media3.giphy.com/media/PJTOVF6II6XqUZg5oa/giphy.gif)
-<img src="https://media3.giphy.com/media/PJTOVF6II6XqUZg5oa/giphy.gif" width="100%" alt="Dog List Page" />
+<img src="https://media1.giphy.com/media/9Yrfk7RK33hfWvuwSX/giphy.gif" width="100%" alt="dog list page - routes" />
+
+### Página de Lista de Cachorros - Carregamento das imagens
+
+<img src="https://media4.giphy.com/media/ZsAqYZaMumzp9hBmVr/giphy.gif" width="100%" alt="dog list page - loading the images" />
+
+### Página de Foto
+
+<img src="https://media4.giphy.com/media/ZsAqYZaMumzp9hBmVr/giphy.gif" width="100%" alt="photo page" />
 
 ## Objetivos desse desafio
 
